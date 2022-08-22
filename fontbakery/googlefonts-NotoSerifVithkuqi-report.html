@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+                <html lang="en">
+                    <head>
+                        <meta charset="utf-8">
+                        <title>Fontbakery Check Report</title>
+                        <style>
+                            
+            html {
+                font-family: sans-serif;
+            }
+
+            h2 {
+                margin-top: 2em;
+            }
+
+            h3 {
+                margin-bottom: 1px;
+            }
+
+            table {
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                border: 1px solid #ddd;
+                padding: 0.5em
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            tr {
+                text-align: left;
+            }
+
+            ul {
+                margin-top: 0;
+            }
+
+            .details_item {
+                list-style: none;
+                display: flex;
+                align-items: baseline;
+            }
+
+            .details_indicator {
+                flex: 0 0 5em;
+                font-weight: bold;
+                padding-right: 0.5em;
+                text-align: right;
+            }
+
+            .details_text {
+                flex: 1 0;
+            }
+            
+                        </style>
+                    </head>
+                    <body>
+                    <h1>Fontbakery Technical Report</h1>
+<div>If you think a check is flawed or have an idea for a check, please  file an issue at <a href='https://github.com/googlefonts/fontbakery/issues'>https://github.com/googlefonts/fontbakery/issues</a> and remember to include a pointer to the repo and branch you're checking.</div>
+<h2>Summary</h2>
+            <table>
+            <tr>
+                <th>💥 ERROR</th>
+                <th>🔥 FAIL</th>
+                <th>⚠️ WARN</th>
+                <th>⏩ SKIP</th>
+                <th>ℹ️ INFO</th>
+                <th>✔️ PASS</th>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>7</td>
+                <td>31</td>
+                <td>566</td>
+                <td>32</td>
+                <td>474</td>
+            </tr>
+            <tr>
+                <td>1%</td>
+                <td>1%</td>
+                <td>3%</td>
+                <td>62%</td>
+                <td>3%</td>
+                <td>52%</td>
+            </tr>
+            </table>
+            
+<p><strong>Note:</strong> The following loglevels were omitted in this report: SKIP, INFO, PASS, DEBUG</p>
+<h2>&lt;Section: Google Fonts&gt; 💥💥💥💥💥🔥🔥🔥🔥🔥⚠️⚠️⚠️⚠️⚠️⚠️⚠️⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️</h2>
+<h3>Check Google Fonts glyph coverage.</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/glyph_coverage&gt;</div>
+
+<details><summary>💥 <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Bold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>💥 ERROR</span><span class='details_text'><p>Failed with IndexError: list index out of range</p>
+</span></li></ul></div></details>
+<details><summary>💥 <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Medium.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>💥 ERROR</span><span class='details_text'><p>Failed with IndexError: list index out of range</p>
+</span></li></ul></div></details>
+<details><summary>💥 <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Regular.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>💥 ERROR</span><span class='details_text'><p>Failed with IndexError: list index out of range</p>
+</span></li></ul></div></details>
+<details><summary>💥 <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-SemiBold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>💥 ERROR</span><span class='details_text'><p>Failed with IndexError: list index out of range</p>
+</span></li></ul></div></details>
+<details><summary>💥 <strong>fonts/NotoSerifVithkuqi/googlefonts/variable-ttf/NotoSerifVithkuqi[wght].ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>💥 ERROR</span><span class='details_text'><p>Failed with IndexError: list index out of range</p>
+</span></li></ul></div></details>
+<h3>Check copyright namerecords match license file.</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/name/license&gt;</div>
+
+<details><summary>🔥 <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Bold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>🔥 FAIL</span><span class='details_text'><p>License file OFL.txt exists but NameID 13 (LICENSE DESCRIPTION) value on platform 3 (WINDOWS) is not specified for that. Value was: &quot;This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.&quot; Must be changed to &quot;This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL&quot; [code: wrong]</p>
+</span></li></ul></div></details>
+<details><summary>🔥 <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Medium.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>🔥 FAIL</span><span class='details_text'><p>License file OFL.txt exists but NameID 13 (LICENSE DESCRIPTION) value on platform 3 (WINDOWS) is not specified for that. Value was: &quot;This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.&quot; Must be changed to &quot;This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL&quot; [code: wrong]</p>
+</span></li></ul></div></details>
+<details><summary>🔥 <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Regular.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>🔥 FAIL</span><span class='details_text'><p>License file OFL.txt exists but NameID 13 (LICENSE DESCRIPTION) value on platform 3 (WINDOWS) is not specified for that. Value was: &quot;This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.&quot; Must be changed to &quot;This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL&quot; [code: wrong]</p>
+</span></li></ul></div></details>
+<details><summary>🔥 <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-SemiBold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>🔥 FAIL</span><span class='details_text'><p>License file OFL.txt exists but NameID 13 (LICENSE DESCRIPTION) value on platform 3 (WINDOWS) is not specified for that. Value was: &quot;This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.&quot; Must be changed to &quot;This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL&quot; [code: wrong]</p>
+</span></li></ul></div></details>
+<details><summary>🔥 <strong>fonts/NotoSerifVithkuqi/googlefonts/variable-ttf/NotoSerifVithkuqi[wght].ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>🔥 FAIL</span><span class='details_text'><p>License file OFL.txt exists but NameID 13 (LICENSE DESCRIPTION) value on platform 3 (WINDOWS) is not specified for that. Value was: &quot;This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.&quot; Must be changed to &quot;This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL&quot; [code: wrong]</p>
+</span></li></ul></div></details>
+<h3>Combined length of family and style must not exceed 27 characters.</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/name/family_and_style_max_length&gt;</div>
+
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Medium.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The combined length of family and style exceeds 27 chars in the following 'WINDOWS' entries:
+FONT_FAMILY_NAME = 'Noto Serif Vithkuqi Medium' / SUBFAMILY_NAME = 'Regular'</p>
+<p>Please take a look at the conversation at https://github.com/googlefonts/fontbakery/issues/2179 in order to understand the reasoning behind these name table records max-length criteria. [code: too-long]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-SemiBold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The combined length of family and style exceeds 27 chars in the following 'WINDOWS' entries:
+FONT_FAMILY_NAME = 'Noto Serif Vithkuqi SemiBold' / SUBFAMILY_NAME = 'Regular'</p>
+<p>Please take a look at the conversation at https://github.com/googlefonts/fontbakery/issues/2179 in order to understand the reasoning behind these name table records max-length criteria. [code: too-long]</p>
+</span></li></ul></div></details>
+<h3>Ensure fonts have ScriptLangTags declared on the 'meta' table.</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/meta/script_lang_tags&gt;</div>
+
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Bold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>This font file does not have a 'meta' table. [code: lacks-meta-table]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Medium.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>This font file does not have a 'meta' table. [code: lacks-meta-table]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Regular.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>This font file does not have a 'meta' table. [code: lacks-meta-table]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-SemiBold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>This font file does not have a 'meta' table. [code: lacks-meta-table]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/variable-ttf/NotoSerifVithkuqi[wght].ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>This font file does not have a 'meta' table. [code: lacks-meta-table]</p>
+</span></li></ul></div></details>
+<h2>&lt;Section: Universal&gt; 🔥⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️ℹ️</h2>
+<h3>Checking all files are in the same directory.</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/family/single_directory&gt;</div>
+
+<details><summary>🔥 <strong>Family check</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>🔥 FAIL</span><span class='details_text'><p>Not all fonts passed in the command line are in the same directory. This may lead to bad results as the tool will interpret all font files as belonging to a single font family. The detected directories are: ['fonts/NotoSerifVithkuqi/googlefonts/ttf', 'fonts/NotoSerifVithkuqi/googlefonts/variable-ttf'] [code: single-directory]</p>
+</span></li></ul></div></details>
+<h3>Check font contains no unreachable glyphs</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/unreachable_glyphs&gt;</div>
+
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Bold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs could not be reached by codepoint or substitution rules:</p>
+<pre><code>- uni00A0.1 
+
+- And NULL
+</code></pre>
+<p>[code: unreachable-glyphs]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Medium.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs could not be reached by codepoint or substitution rules:</p>
+<pre><code>- uni00A0.1 
+
+- And NULL
+</code></pre>
+<p>[code: unreachable-glyphs]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Regular.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs could not be reached by codepoint or substitution rules:</p>
+<pre><code>- uni00A0.1 
+
+- And NULL
+</code></pre>
+<p>[code: unreachable-glyphs]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-SemiBold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs could not be reached by codepoint or substitution rules:</p>
+<pre><code>- uni00A0.1 
+
+- And NULL
+</code></pre>
+<p>[code: unreachable-glyphs]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/variable-ttf/NotoSerifVithkuqi[wght].ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs could not be reached by codepoint or substitution rules:</p>
+<pre><code>- uni00A0.1 
+
+- And NULL
+</code></pre>
+<p>[code: unreachable-glyphs]</p>
+</span></li></ul></div></details>
+<h3>Check if each glyph has the recommended amount of contours.</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/contour_count&gt;</div>
+
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Bold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>This check inspects the glyph outlines and detects the total number of contours in each of them. The expected values are infered from the typical ammounts of contours observed in a large collection of reference font families. The divergences listed below may simply indicate a significantly different design on some of your glyphs. On the other hand, some of these may flag actual bugs in the font such as glyphs mapped to an incorrect codepoint. Please consider reviewing the design and codepoint assignment of these to make sure they are correct.</p>
+<p>The following glyphs do not have the recommended number of contours:</p>
+<pre><code>- Glyph name: aogonek	Contours detected: 3	Expected: 2
+
+- Glyph name: Uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: Uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: aogonek	Contours detected: 3	Expected: 2 
+
+- And Glyph name: uogonek	Contours detected: 2	Expected: 1
+</code></pre>
+<p>[code: contour-count]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Medium.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>This check inspects the glyph outlines and detects the total number of contours in each of them. The expected values are infered from the typical ammounts of contours observed in a large collection of reference font families. The divergences listed below may simply indicate a significantly different design on some of your glyphs. On the other hand, some of these may flag actual bugs in the font such as glyphs mapped to an incorrect codepoint. Please consider reviewing the design and codepoint assignment of these to make sure they are correct.</p>
+<p>The following glyphs do not have the recommended number of contours:</p>
+<pre><code>- Glyph name: aogonek	Contours detected: 3	Expected: 2
+
+- Glyph name: Uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: Uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: aogonek	Contours detected: 3	Expected: 2 
+
+- And Glyph name: uogonek	Contours detected: 2	Expected: 1
+</code></pre>
+<p>[code: contour-count]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Regular.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>This check inspects the glyph outlines and detects the total number of contours in each of them. The expected values are infered from the typical ammounts of contours observed in a large collection of reference font families. The divergences listed below may simply indicate a significantly different design on some of your glyphs. On the other hand, some of these may flag actual bugs in the font such as glyphs mapped to an incorrect codepoint. Please consider reviewing the design and codepoint assignment of these to make sure they are correct.</p>
+<p>The following glyphs do not have the recommended number of contours:</p>
+<pre><code>- Glyph name: aogonek	Contours detected: 3	Expected: 2
+
+- Glyph name: Uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: Uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: aogonek	Contours detected: 3	Expected: 2 
+
+- And Glyph name: uogonek	Contours detected: 2	Expected: 1
+</code></pre>
+<p>[code: contour-count]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-SemiBold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>This check inspects the glyph outlines and detects the total number of contours in each of them. The expected values are infered from the typical ammounts of contours observed in a large collection of reference font families. The divergences listed below may simply indicate a significantly different design on some of your glyphs. On the other hand, some of these may flag actual bugs in the font such as glyphs mapped to an incorrect codepoint. Please consider reviewing the design and codepoint assignment of these to make sure they are correct.</p>
+<p>The following glyphs do not have the recommended number of contours:</p>
+<pre><code>- Glyph name: aogonek	Contours detected: 3	Expected: 2
+
+- Glyph name: Uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: Uogonek	Contours detected: 2	Expected: 1
+
+- Glyph name: aogonek	Contours detected: 3	Expected: 2 
+
+- And Glyph name: uogonek	Contours detected: 2	Expected: 1
+</code></pre>
+<p>[code: contour-count]</p>
+</span></li></ul></div></details>
+<h3>Ensure dotted circle glyph is present and can attach marks.</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/dotted_circle&gt;</div>
+
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Bold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>No dotted circle glyph present [code: missing-dotted-circle]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Medium.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>No dotted circle glyph present [code: missing-dotted-circle]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Regular.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>No dotted circle glyph present [code: missing-dotted-circle]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-SemiBold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>No dotted circle glyph present [code: missing-dotted-circle]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/variable-ttf/NotoSerifVithkuqi[wght].ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>No dotted circle glyph present [code: missing-dotted-circle]</p>
+</span></li></ul></div></details>
+<h2>&lt;Section: fontbakery.profiles.fvar&gt; 🔥⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩⏩</h2>
+<h3>Validates that when an instance record is included for the default instance, its subfamilyNameID value is set to either 2 or 17, and its postScriptNameID value is set to 6.</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.adobe.fonts/check/varfont/valid_default_instance_nameids&gt;</div>
+
+<details><summary>🔥 <strong>fonts/NotoSerifVithkuqi/googlefonts/variable-ttf/NotoSerifVithkuqi[wght].ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>🔥 FAIL</span><span class='details_text'><p>'Regular' instance has the same coordinates as the default instance; its subfamilyNameID should be either 2 or 17, instead of 261. [code: invalid-default-instance-subfamily-nameid:261]</p>
+</span></li></ul></div></details>
+<h2>&lt;Section: Outline Correctness Checks&gt; ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⏩⏩⏩⏩</h2>
+<h3>Are there any misaligned on-curve points?</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/outline_alignment_miss&gt;</div>
+
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Bold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs have on-curve points which have potentially incorrect y coordinates:</p>
+<pre><code>* three (U+0033): X=343.0,Y=1.0 (should be at baseline 0?)
+
+* five (U+0035): X=336.0,Y=2.0 (should be at baseline 0?)
+
+* J (U+004A): X=281.0,Y=-2.0 (should be at baseline 0?)
+
+* a (U+0061): X=265.0,Y=-1.5 (should be at baseline 0?)
+
+* f (U+0066): X=310.0,Y=712.0 (should be at cap-height 714?)
+
+* s (U+0073): X=356.5,Y=534.5 (should be at x-height 536?)
+
+* t (U+0074): X=332.5,Y=-1.0 (should be at baseline 0?)
+
+* agrave (U+00E0): X=265.0,Y=-1.5 (should be at baseline 0?)
+
+* aacute (U+00E1): X=265.0,Y=-1.5 (should be at baseline 0?)
+
+* acircumflex (U+00E2): X=265.0,Y=-1.5 (should be at baseline 0?) 
+
+* And 39 more.
+</code></pre>
+<p>Use -F or --full-lists to disable shortening of long lists. [code: found-misalignments]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Regular.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs have on-curve points which have potentially incorrect y coordinates:</p>
+<pre><code>* parenleft (U+0028): X=314.0,Y=715.0 (should be at cap-height 714?)
+
+* parenright (U+0029): X=32.0,Y=715.0 (should be at cap-height 714?)
+
+* comma (U+002C): X=114.0,Y=1.0 (should be at baseline 0?)
+
+* three (U+0033): X=334.5,Y=1.0 (should be at baseline 0?)
+
+* nine (U+0039): X=139.0,Y=2.0 (should be at baseline 0?)
+
+* semicolon (U+003B): X=132.0,Y=1.0 (should be at baseline 0?)
+
+* G (U+0047): X=519.0,Y=1.5 (should be at baseline 0?)
+
+* a (U+0061): X=182.0,Y=536.5 (should be at x-height 536?)
+
+* c (U+0063): X=360.0,Y=535.0 (should be at x-height 536?)
+
+* g (U+0067): X=161.0,Y=-0.5 (should be at baseline 0?) 
+
+* And 39 more.
+</code></pre>
+<p>Use -F or --full-lists to disable shortening of long lists. [code: found-misalignments]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-SemiBold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs have on-curve points which have potentially incorrect y coordinates:</p>
+<pre><code>* comma (U+002C): X=119.0,Y=-0.5 (should be at baseline 0?)
+
+* three (U+0033): X=340.0,Y=1.0 (should be at baseline 0?)
+
+* semicolon (U+003B): X=132.0,Y=-0.5 (should be at baseline 0?)
+
+* Q (U+0051): X=470.0,Y=-2.0 (should be at baseline 0?)
+
+* a (U+0061): X=186.5,Y=538.0 (should be at x-height 536?)
+
+* y (U+0079): X=254.0,Y=-2.0 (should be at baseline 0?)
+
+* y (U+0079): X=343.0,Y=-2.0 (should be at baseline 0?)
+
+* Aring (U+00C5): X=477.0,Y=715.5 (should be at cap-height 714?)
+
+* germandbls (U+00DF): X=352.0,Y=716.0 (should be at cap-height 714?)
+
+* atilde (U+00E3): X=135.5,Y=712.0 (should be at cap-height 714?) 
+
+* And 34 more.
+</code></pre>
+<p>Use -F or --full-lists to disable shortening of long lists. [code: found-misalignments]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/variable-ttf/NotoSerifVithkuqi[wght].ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs have on-curve points which have potentially incorrect y coordinates:</p>
+<pre><code>* parenleft (U+0028): X=314.0,Y=715.0 (should be at cap-height 714?)
+
+* parenright (U+0029): X=32.0,Y=715.0 (should be at cap-height 714?)
+
+* comma (U+002C): X=114.0,Y=1.0 (should be at baseline 0?)
+
+* three (U+0033): X=334.5,Y=1.0 (should be at baseline 0?)
+
+* nine (U+0039): X=139.0,Y=2.0 (should be at baseline 0?)
+
+* semicolon (U+003B): X=132.0,Y=1.0 (should be at baseline 0?)
+
+* G (U+0047): X=519.0,Y=1.5 (should be at baseline 0?)
+
+* a (U+0061): X=182.0,Y=536.5 (should be at x-height 536?)
+
+* c (U+0063): X=360.0,Y=535.0 (should be at x-height 536?)
+
+* f (U+0066): X=331.0,Y=712.5 (should be at cap-height 714?) 
+
+* And 52 more.
+</code></pre>
+<p>Use -F or --full-lists to disable shortening of long lists. [code: found-misalignments]</p>
+</span></li></ul></div></details>
+<h3>Do outlines contain any jaggy segments?</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/outline_jaggy_segments&gt;</div>
+
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Bold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs have jaggy segments:</p>
+<pre><code>* Cevit (U+10573): B&lt;&lt;346.5,365.0&gt;-&lt;294.0,327.0&gt;-&lt;204.0,301.0&gt;&gt;/B&lt;&lt;204.0,301.0&gt;-&lt;229.0,304.0&gt;-&lt;259.5,306.0&gt;&gt; = 9.27064482045833
+
+* y (U+0079): B&lt;&lt;321.0,162.0&gt;-&lt;327.0,138.0&gt;-&lt;329.0,118.0&gt;&gt;/B&lt;&lt;329.0,118.0&gt;-&lt;331.0,139.0&gt;-&lt;339.5,165.0&gt;&gt; = 11.150925168505127
+
+* yacute (U+00FD): B&lt;&lt;321.0,162.0&gt;-&lt;327.0,138.0&gt;-&lt;329.0,118.0&gt;&gt;/B&lt;&lt;329.0,118.0&gt;-&lt;331.0,139.0&gt;-&lt;339.5,165.0&gt;&gt; = 11.150925168505127
+
+* ycircumflex (U+0177): B&lt;&lt;321.0,162.0&gt;-&lt;327.0,138.0&gt;-&lt;329.0,118.0&gt;&gt;/B&lt;&lt;329.0,118.0&gt;-&lt;331.0,139.0&gt;-&lt;339.5,165.0&gt;&gt; = 11.150925168505127
+
+* ydieresis (U+00FF): B&lt;&lt;321.0,162.0&gt;-&lt;327.0,138.0&gt;-&lt;329.0,118.0&gt;&gt;/B&lt;&lt;329.0,118.0&gt;-&lt;331.0,139.0&gt;-&lt;339.5,165.0&gt;&gt; = 11.150925168505127 
+
+* And ygrave (U+1EF3): B&lt;&lt;321.0,162.0&gt;-&lt;327.0,138.0&gt;-&lt;329.0,118.0&gt;&gt;/B&lt;&lt;329.0,118.0&gt;-&lt;331.0,139.0&gt;-&lt;339.5,165.0&gt;&gt; = 11.150925168505127 [code: found-jaggy-segments]
+</code></pre>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Regular.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs have jaggy segments:</p>
+<pre><code>* xevit (U+105B9): B&lt;&lt;239.0,526.0&gt;-&lt;237.0,525.0&gt;-&lt;236.0,524.0&gt;&gt;/L&lt;&lt;236.0,524.0&gt;--&lt;239.0,526.0&gt;&gt; = 11.309932474020227 
+
+* And xevit (U+105B9): L&lt;&lt;236.0,524.0&gt;--&lt;239.0,526.0&gt;&gt;/B&lt;&lt;239.0,526.0&gt;-&lt;237.0,525.0&gt;-&lt;236.0,524.0&gt;&gt; = 7.125016348901757 [code: found-jaggy-segments]
+</code></pre>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-SemiBold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs have jaggy segments:</p>
+<pre><code>* Cevit (U+10573): B&lt;&lt;377.0,410.0&gt;-&lt;320.0,341.0&gt;-&lt;203.0,299.0&gt;&gt;/B&lt;&lt;203.0,299.0&gt;-&lt;223.0,301.0&gt;-&lt;247.0,302.5&gt;&gt; = 14.036243467926484 [code: found-jaggy-segments]
+</code></pre>
+</span></li></ul></div></details>
+<h3>Do outlines contain any semi-vertical or semi-horizontal lines?</h3>
+<div>Check ID: &lt;FontBakeryCheck:com.google.fonts/check/outline_semi_vertical&gt;</div>
+
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Bold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs have semi-vertical/semi-horizontal lines:</p>
+<pre><code>* Fevit (U+10579): L&lt;&lt;111.0,186.0&gt;--&lt;110.0,603.0&gt;&gt;
+
+* Fevit (U+10579): L&lt;&lt;268.0,610.0&gt;--&lt;269.0,193.0&gt;&gt;
+
+* Revit (U+1058A): L&lt;&lt;111.0,186.0&gt;--&lt;110.0,733.0&gt;&gt;
+
+* Revit (U+1058A): L&lt;&lt;268.0,740.0&gt;--&lt;269.0,193.0&gt;&gt;
+
+* Sevit (U+1058C): L&lt;&lt;111.0,186.0&gt;--&lt;110.0,603.0&gt;&gt;
+
+* Sevit (U+1058C): L&lt;&lt;268.0,610.0&gt;--&lt;269.0,193.0&gt;&gt;
+
+* Shevit (U+1058D): L&lt;&lt;111.0,186.0&gt;--&lt;110.0,603.0&gt;&gt;
+
+* Shevit (U+1058D): L&lt;&lt;268.0,610.0&gt;--&lt;269.0,193.0&gt;&gt;
+
+* Vevit (U+10591): L&lt;&lt;111.0,231.0&gt;--&lt;110.0,603.0&gt;&gt;
+
+* Vevit (U+10591): L&lt;&lt;268.0,610.0&gt;--&lt;269.0,251.0&gt;&gt; 
+
+* And 5 more.
+</code></pre>
+<p>Use -F or --full-lists to disable shortening of long lists. [code: found-semi-vertical]</p>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-Medium.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs have semi-vertical/semi-horizontal lines:</p>
+<pre><code>* Fevit (U+10579): L&lt;&lt;240.0,606.0&gt;--&lt;241.0,217.0&gt;&gt;
+
+* Revit (U+1058A): L&lt;&lt;240.0,736.0&gt;--&lt;241.0,217.0&gt;&gt;
+
+* Sevit (U+1058C): L&lt;&lt;240.0,606.0&gt;--&lt;241.0,217.0&gt;&gt;
+
+* Shevit (U+1058D): L&lt;&lt;240.0,606.0&gt;--&lt;241.0,217.0&gt;&gt;
+
+* Vevit (U+10591): L&lt;&lt;240.0,606.0&gt;--&lt;241.0,261.0&gt;&gt; 
+
+* And sterling (U+00A3): L&lt;&lt;408.0,339.0&gt;--&lt;251.0,340.0&gt;&gt; [code: found-semi-vertical]
+</code></pre>
+</span></li></ul></div></details>
+<details><summary>⚠️ <strong>fonts/NotoSerifVithkuqi/googlefonts/ttf/NotoSerifVithkuqi-SemiBold.ttf</strong></summary><div><ul><li class='details_item'><span class='details_indicator'>⚠️ WARN</span><span class='details_text'><p>The following glyphs have semi-vertical/semi-horizontal lines:</p>
+<pre><code>* Fevit (U+10579): L&lt;&lt;118.0,198.0&gt;--&lt;117.0,601.0&gt;&gt;
+
+* Fevit (U+10579): L&lt;&lt;253.0,608.0&gt;--&lt;254.0,206.0&gt;&gt;
+
+* Revit (U+1058A): L&lt;&lt;118.0,198.0&gt;--&lt;117.0,731.0&gt;&gt;
+
+* Revit (U+1058A): L&lt;&lt;253.0,738.0&gt;--&lt;254.0,206.0&gt;&gt;
+
+* Sevit (U+1058C): L&lt;&lt;118.0,198.0&gt;--&lt;117.0,601.0&gt;&gt;
+
+* Sevit (U+1058C): L&lt;&lt;253.0,608.0&gt;--&lt;254.0,206.0&gt;&gt;
+
+* Shevit (U+1058D): L&lt;&lt;118.0,198.0&gt;--&lt;117.0,601.0&gt;&gt;
+
+* Shevit (U+1058D): L&lt;&lt;253.0,608.0&gt;--&lt;254.0,206.0&gt;&gt;
+
+* Vevit (U+10591): L&lt;&lt;118.0,241.0&gt;--&lt;117.0,601.0&gt;&gt;
+
+* Vevit (U+10591): L&lt;&lt;253.0,608.0&gt;--&lt;254.0,256.0&gt;&gt;
+
+* h (U+0068): L&lt;&lt;104.0,119.0&gt;--&lt;103.0,648.0&gt;&gt; 
+
+* And h (U+0068): L&lt;&lt;233.0,313.0&gt;--&lt;234.0,115.0&gt;&gt; [code: found-semi-vertical]
+</code></pre>
+</span></li></ul></div></details>
+                    </body>
+                </html>
