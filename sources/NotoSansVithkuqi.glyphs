@@ -34,7 +34,7 @@ code = "a-vit bbe-vit be-vit ce-vit che-cit de-vit dhe-vit e-vit ei-vit fe-vit g
 name = Lowercase;
 }
 );
-copyright = "Copyright 2021 Google LLC. All Rights Reserved.";
+copyright = "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/vithkuqi)";
 customParameters = (
 {
 name = fsType;
@@ -59,28 +59,15 @@ value = GOOG;
 },
 {
 name = licenseURL;
-value = "http://scripts.sil.org/OFL";
+value = "https://scripts.sil.org/OFL";
 },
 {
 name = versionString;
-value = "Version 1.000";
+value = "Version 1.001";
 },
 {
 name = license;
-value = "This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.";
-},
-{
-name = Axes;
-value = (
-{
-Name = Weight;
-Tag = wght;
-},
-{
-Name = Width;
-Tag = wdth;
-}
-);
+value = "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL";
 }
 );
 date = "2021-11-03 06:56:17 +0000";
@@ -178,7 +165,6 @@ GSOffsetVertical = 10;
 verticalStems = (
 94
 );
-visible = 1;
 weightValue = 90;
 xHeight = 536;
 },
@@ -421,7 +407,6 @@ horizontalStems = (
 64
 );
 id = "58AAA307-6DE9-4107-B80A-C255AE991657";
-name = Bold;
 userData = {
 GSOffsetHorizontal = 7;
 GSOffsetProportional = 1;
@@ -430,7 +415,6 @@ GSOffsetVertical = 10;
 verticalStems = (
 152
 );
-visible = 1;
 weight = SemiBold;
 weightValue = 151;
 xHeight = 546;
@@ -23254,5 +23238,5 @@ tH = "70";
 };
 };
 versionMajor = 1;
-versionMinor = 0;
+versionMinor = 1;
 }
