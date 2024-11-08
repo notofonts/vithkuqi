@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Diffenator3</title>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+	<style type="text/css">
+		@font-face {
+      font-family: "Font Before";
+      src: url();
+    }
+
+    @font-face {
+      font-family: "Font After";
+      src: url();
+    }
+
+    .font-before, .font-after {
+      font-variation-settings: "wght" 400, "wdth" 100;
+    }
+
+    .font-before {
+      font-family: "Font Before", "Adobe Notdef";
+    }
+
+    .font-after {
+      font-family: "Font After", "Adobe Notdef";
+    }
+
+	:root {
+	--node-pt-size: 40px;
+	}
+
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background-color: #b3d4f5 !important;
+    font-family: "Montserrat", sans-serif !important;
+}
+
+.nav-pills .nav-item.show .nav-link, .nav-pills .nav-link.active {
+    background-color: #ced9e4 !important;
+}
+.nav-item {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 2px;
+}
+
+.nav-pills .nav-link{
+    background-color: #9fcaf5 !important;
+}
+h4 {
+    color: #6f7882 !important;
+}
+
+@font-face {
+    font-family: "Adobe NotDef";
+    src: url(https://cdn.jsdelivr.net/gh/adobe-fonts/adobe-notdef/AND-Regular.ttf);
+}
+
+.box-title {
+    width: 100%;
+    font-size: 8pt;
+    font-weight: 700;
+    border-top: 1px solid black;
+    padding-top: 5px;
+    margin-bottom: 10pt;
+    display: block;
+}
+
+.box {
+    margin-bottom: 20pt;
+    width: 100%;
+    float: left;
+}
+
+.box-text {}
+
+#ui-nav {
+    position: fixed;
+    right: 20px;
+    z-index: 100;
+}
+
+#font-toggle {}
+
+.ui-nav-item {
+    display: block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
+    text-align: center;
+    color: white;
+    background-color: black;
+    display: block;
+    font-size: 14pt;
+    padding: 5px;
+    margin: 2px;
+}
+
+/* Stuff needed for the table differ */
+body {
+    font-family: Helvetica;
+}
+
+.node {
+    font-family: courier;
+    cursor: pointer;
+    position: relative;
+    left: 30px;
+    padding: 5px;
+    display: block;
+    border: 1px dashed grey;
+    background-color: #e9e9ee;
+}
+
+.header {
+    font-weight: bold;
+}
+
+.attr-before {
+    color: green;
+    cursor: text;
+}
+
+.attr-after {
+    color: red;
+    cursor: text;
+}
+
+.leaf {
+    font-weight: bold;
+}
+
+.old .cell .new {
+    display: none;
+}
+
+.new .cell .old {
+    display: none;
+}
+
+.both .cell .old {
+    opacity: 0.75;
+    color: red;
+}
+
+.both .cell .new {
+    opacity: 0.75;
+    position: absolute;
+    top: 0;
+    color: green;
+}
+
+.spacer {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+#ot-panel {
+    max-height: 400px;
+    overflow-y: scroll;
+    background: white;
+    padding: 10px;
+    display: none;
+   }
+
+   .cell{
+    z-index: -100;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 5pt;
+    margin: 5pt;
+    width: 50pt;
+    font-size: var(--node-pt-size);
+    line-height: calc(var(--node-pt-size) * 1.5);
+  }
+  .cell-word{
+    z-index: -100;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 5pt;
+    margin: 5pt;
+    font-size: var(--node-pt-size);
+    line-height: calc(var(--node-pt-size) * 1.5);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+  .cell-glyph{
+    z-index: -100;
+    float: left;
+    display: block;
+    text-align: center;
+    border-radius: 5pt;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 5pt;
+    margin: 5pt;
+    width: calc(var(--node-pt-size) * 2);
+    min-height: calc(var(--node-pt-size) * 2);
+    font-size: var(--node-pt-size);
+  }
+  .cell-glyph.font-before, .cell-word.font-before {
+    background: #eff6f2;
+  }
+  .cell-glyph.font-after, .cell-word.font-after {
+    background: #f7f4f4;
+  }
+
+  .cell-glyph:hover {
+    box-shadow: none;
+    background: #f0f0f5;
+  }
+  .cat-strings .cell {
+    clear: both;
+    position: static;
+    float: none;
+    text-align: left;
+  }
+  .codepoint {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 10pt;
+    line-height: 10pt;
+  }
+  .box-title {
+    clear: both;
+  }
+  .node.closed::before {
+    content: "+";
+    margin-right: 5pt;
+  }
+  .node.open::before {
+    content: "-";
+    margin-right: 5pt;
+  }
+
+  .tooltip pre {
+    background-color: #6f7882;
+    padding: 5px;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .tooltip {
+    line-height: 1em;
+  }
+  .tooltip-inner {
+    max-width: 300px;
+  }
+
+  h1,h2,h3,h4,h5 {
+    clear: both;
+  }
+
+  #locationnav li {
+    white-space: wrap;
+  }
+
+  #userdefined div { width: 100%; }
+  
+/* The following rules are used in the WASM version, not in the CLI version.
+   But we keep them here so we can share them between the two versions. */
+
+   .modal-dialog {
+    max-width: 100% !important;
+    margin: 0 !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+  }
+
+  .fontdrop {
+    padding: 30px;
+    border-radius: 20px;
+    outline: 3px dashed #ffffffff;
+    outline-offset: -20px;
+  }
+
+  #fontbefore {
+    background-color: #ddffdddd;
+  }
+
+  #fontafter {
+    background-color: #ffdddddd;
+  }
+
+  .dragging {
+    background-image: linear-gradient(rgb(0 0 0/5%) 0 0);
+    outline: 5px dashed #ffffffff;
+  }
+
+  #diffkerns {
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+		</style>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+		<div id="ui-nav">
+		  <div class="ui-nav-item" id="fonttoggle">Old</div>
+		  <div class="ui-nav-item" id="fontanimate">Animate</div>
+		  <div id="axes">
+		  </div>
+		</div>
+	
+	<div class="row">
+		<div class="col-2">
+			<ul class="nav nav-pills" id="locationnav">
+			</ul>
+		</div>
+		<div class="col-9 mt-3">
+			<div id="title"></div>
+			<div id="cmapdiff"> </div>
+			<div id="main"></div>
+			<div id="userdefined">
+				<h4>User defined sample text</h4>
+				<div contenteditable="true" class="font-before cell-word">
+					You can type your own text here to see it previewed in the fonts.
+				</div>
+				<div style="clear: both"></div>
+			</div>
+			<div id="diffkerns"> </div>
+			<div id="difftable"> </div>
+		</div>
+	</div>
+	<script type="module">
+		function renderTableDiff(node, toplevel) {
+  var wrapper = $("<div> </div>");
+  if (!node) {
+    return wrapper;
+  }
+  if (Array.isArray(node) && node.length == 2) {
+    var before = $("<span/>");
+    before.addClass("attr-before");
+    before.html(" " + node[0] + " ");
+    var after = $("<span/>");
+    after.addClass("attr-after");
+    after.append(renderTableDiff(node[1], true).children());
+    wrapper.append(before);
+    wrapper.append(after);
+    return wrapper;
+  }
+  if (node.constructor != Object) {
+    var thing = $("<span/>");
+    thing.html(node);
+    wrapper.append(thing);
+    return wrapper;
+  }
+  for (const [key, value] of Object.entries(node)) {
+    var display = $("<div/>");
+    display.addClass("node");
+    if (!toplevel) {
+      display.hide();
+    }
+    display.append(key);
+    display.append(renderTableDiff(value, false).children());
+    if (display.children(".node").length > 0) {
+      display.addClass("closed");
+    }
+    wrapper.append(display);
+  }
+  return wrapper;
+}
+
+function addAGlyph(glyph, where) {
+  let title = "";
+  if (glyph.name) {
+    title = "name: " + glyph.name;
+  }
+  let cp =
+    "<br>U+" +
+    glyph.string.codePointAt(0).toString(16).padStart(4, "0").toUpperCase();
+  where.append(`
+        <div class="cell-glyph font-before">
+        <div data-toggle="tooltip" data-html="true" data-title="${glyph.differing_pixels} pixels"> ${glyph.string}
+        <div class="codepoint" data-toggle="tooltip" data-html="true" data-title="${title}">
+		${cp}
+        </div>
+        </div>
+    `);
+}
+
+function addAWord(diff, where) {
+  if (!diff.buffer_b) {
+    diff.buffer_b = diff.buffer_a;
+  }
+  where.append(`
+		<div class="cell-word font-before">
+		<span data-toggle="tooltip" data-html="true" data-title="Before: <pre>${diff.buffer_a}</pre>After: <pre>${diff.buffer_b}</pre><br>difference: ${diff.differing_pixels} pixels">
+		${diff.word}
+		</span>
+		</div>
+	`);
+}
+
+function diffTables(report) {
+  $("#difftable").empty();
+  $("#difftable").append(`<h4 class="mt-2 box-title">Table-level details</h4>`);
+  $("#difftable").append(
+    renderTableDiff({ tables: report["tables"] }, true).children()
+  );
+  $("#difftable .node").on("click", function (e) {
+    $(this).toggleClass("closed open");
+    $(this).children(".node").toggle();
+    e.stopPropagation();
+  });
+}
+function diffKerns(report) {
+  $("#diffkerns").empty();
+  $("#diffkerns").append(`<h4 class="mt-2">Modified Kerns</h4>`);
+  $("#diffkerns").append(
+    `<table class="table table-striped" id="diffkerns"><tr><th>Pair</th><th>Old</old><th>New</th></table>`
+  );
+  for (let [pair, value] of Object.entries(report["kerns"])) {
+    if (pair == "error") {
+      $("#diffkerns").append(`<p class="text-danger">Error: ${value}</p>`);
+      continue;
+    } else {
+      let row = $("<tr>");
+      row.append(`<td>${pair}</td>`);
+      row.append(`<td>${serializeKernBefore(value)}</td>`);
+      row.append(`<td>${serializeKernAfter(value)}</td>`);
+      $("#diffkerns table").append(row);
+    }
+  }
+}
+
+function serializeKernBefore(kern) {
+  if (Array.isArray(kern)) {
+    return serializeKern(kern[0], -1);
+  }
+  return serializeKern(kern, 0);
+}
+
+function serializeKernAfter(kern) {
+  if (Array.isArray(kern)) {
+    return serializeKern(kern[1], -1);
+  }
+  return serializeKern(kern, 1);
+}
+
+function serializeKern(kern, index) {
+  let string = "";
+  if (kern === null || kern === undefined) {
+    return "(null)";
+  }
+  if (kern.x) {
+    string += serializeKernValue(kern.x, index);
+  } else if (kern.y) {
+    string = "0";
+  }
+
+  if (kern.y) {
+    string += "," + serializeKernValue(kern.y, index);
+  }
+  if (!kern.x_placement && !kern.y_placement) {
+    return string;
+  }
+  string += "@";
+  if (kern.x_placement) {
+    string += serializeKernValue(kern.x_placement, index);
+  } else if (kern.y_placement) {
+    string += "0";
+  }
+  if (kern.y_placement) {
+    string += "," + serializeKernValue(kern.y_placement, index);
+  }
+  return string;
+}
+
+function serializeKernValue(kern, index) {
+  if (typeof kern == "number") {
+    return kern;
+  }
+  let string = "(";
+  let verybig = Object.entries(kern).length > 5;
+  for (let [key, value] of Object.entries(kern)) {
+    if (key == "default") {
+      string += value[index] + " ";
+    } else {
+      string += value[index] + "@" + key + " ";
+    }
+    if (verybig) {
+      string += "<br>";
+    }
+  }
+  return string.trim() + ")";
+}
+
+function cmapDiff(report) {
+  if (report.cmap_diff && (report.cmap_diff.new || report.cmap_diff.missing)) {
+    $("#cmapdiff").append(
+      `<h4 class="mt-2">Added and Removed Encoded Glyphs</h4>`
+    );
+    if (report["cmap_diff"]["new"]) {
+      $("#cmapdiff").append(`<h4 class="box-title">Added Glyphs</h4>`);
+      let added = $("<div>");
+      for (let glyph of report["cmap_diff"]["new"]) {
+        addAGlyph(glyph, added);
+      }
+      $("#cmapdiff").append(added);
+    }
+
+    if (report["cmap_diff"]["missing"]) {
+      $("#cmapdiff").append(`<h4 class="box-title">Removed Glyphs</h4>`);
+      let missing = $("<div>");
+      for (let glyph of report["cmap_diff"]["missing"]) {
+        addAGlyph(glyph, missing);
+      }
+      $("#cmapdiff").append(missing);
+    }
+  } else {
+    $("#cmapdiff").append(`<p>No changes to encoded glyphs</p>`);
+  }
+}
+
+function setupAnimation() {
+  $("#fonttoggle").click(function () {
+    if ($(this).text() == "Old") {
+      $(this).text("New");
+      $(".font-before").removeClass("font-before").addClass("font-after");
+    } else {
+      $(this).text("Old");
+      $(".font-after").removeClass("font-after").addClass("font-before");
+    }
+  });
+
+  let animationHandle;
+  function animate() {
+    $("#fonttoggle").click();
+    animationHandle = setTimeout(animate, 1000);
+  }
+  $("#fontanimate").click(function () {
+    if ($(this).text() == "Animate") {
+      $(this).text("Stop");
+      animate();
+    } else {
+      $(this).text("Animate");
+      clearTimeout(animationHandle);
+    }
+  });
+}
+
+export {
+  renderTableDiff,
+  addAGlyph,
+  addAWord,
+  cmapDiff,
+  diffTables,
+  diffKerns,
+  setupAnimation,
+};
+
+	var report = {"tables":{"GPOS":{"script_list":{"DFLT/dflt":[{"lookups":[0]},null],"vith/dflt":[null,{"lookups":[0]}]},"feature_list":{"kern":[[0],null],"dist":[null,[0]]},"lookup_list":{"0":{"0":{"Bbevit":{"Shevit":[{"x":{"wght=700":-30,"wght=482.76367":-23,"default":-20,"wght=586.19995":-26}},null]},"Devit":[{"Njevit":{"x":{"default":-30,"wght=482.76367":-33,"wght=586.19995":-36,"wght=700":-40}},"Uvit":{"x":{"default":-150,"wght=586.19995":-156,"wght=700":-160,"wght=482.76367":-153}},"Vevit":{"x":{"wght=700":-40,"wght=482.76367":-33,"wght=586.19995":-36,"default":-30}},"Yvit":{"x":{"wght=586.19995":-156,"wght=482.76367":-153,"wght=700":-160,"default":-150}},"nevit":{"x":{"default":-40,"wght=586.19995":-46,"wght=700":-50,"wght=482.76367":-43}},"vevit":{"x":{"wght=482.76367":-23,"wght=586.19995":-26,"default":-20,"wght=700":-30}}},null],"Dhevit":[{"Revit":{"x":{"wght=586.19995":-46,"default":-40,"wght=700":-50,"wght=482.76367":-43}},"Sevit":{"x":{"wght=700":-50,"default":-40,"wght=586.19995":-46,"wght=482.76367":-43}},"Shevit":{"x":{"default":-40,"wght=482.76367":-43,"wght=700":-50,"wght=586.19995":-46}},"Vevit":{"x":{"wght=586.19995":-46,"default":-40,"wght=700":-50,"wght=482.76367":-43}},"nevit":{"x":{"default":-40,"wght=482.76367":-43,"wght=586.19995":-46,"wght=700":-50}},"vevit":{"x":{"default":-20,"wght=482.76367":-23,"wght=700":-30,"wght=586.19995":-26}}},null],"Eivit":[{"Uvit":{"x":{"wght=586.19995":-46,"default":-40,"wght=482.76367":-43,"wght=700":-50}},"Yvit":{"x":{"wght=586.19995":-46,"wght=700":-50,"default":-40,"wght=482.76367":-43}}},null],"Ivit":[{"Revit":{"x":{"wght=586.19995":-26,"default":-20,"wght=482.76367":-23,"wght=700":-30}},"Sevit":{"x":{"wght=700":-30,"default":-20,"wght=482.76367":-23,"wght=586.19995":-26}},"Shevit":{"x":{"default":-20,"wght=586.19995":-26,"wght=482.76367":-23,"wght=700":-30}},"Vevit":{"x":{"default":-20,"wght=700":-30,"wght=586.19995":-26,"wght=482.76367":-23}}},null],"Jevit":{"Shevit":[{"x":{"wght=700":-30,"wght=586.19995":-26,"wght=482.76367":-23,"default":-20}},null]},"Llavit":{"Ivit":[{"x":{"wght=586.19995":-53,"wght=482.76367":-46,"default":-40,"wght=700":-60}},null],"bbevit":[{"x":{"default":-30,"wght=700":-40,"wght=482.76367":-33,"wght=586.19995":-36}},null],"cevit":[{"x":{"wght=700":-40,"wght=482.76367":-33,"default":-30,"wght=586.19995":-36}},null],"eivit":[{"x":{"wght=586.19995":-56,"default":-50,"wght=482.76367":-53,"wght=700":-60}},null],"gavit":[{"x":{"wght=586.19995":-18,"wght=482.76367":-8,"default":0,"wght=700":-30}},null],"jevit":[{"x":{"wght=482.76367":-33,"wght=586.19995":-36,"wght=700":-40,"default":-30}},null],"nevit":[{"x":{"wght=586.19995":-36,"wght=700":-40,"default":-30,"wght=482.76367":-33}},null],"ovit":[{"x":{"wght=482.76367":-43,"wght=586.19995":-46,"default":-40,"wght=700":-50}},null],"sevit":[{"x":{"wght=586.19995":-26,"wght=482.76367":-23,"wght=700":-30,"default":-20}},null],"shevit":[{"x":{"default":-20,"wght=482.76367":-23,"wght=700":-30,"wght=586.19995":-26}},null],"tevit":[{"x":{"default":-30,"wght=586.19995":-36,"wght=700":-40,"wght=482.76367":-33}},null],"uvit":[{"x":{"default":-20,"wght=700":-30,"wght=586.19995":-26,"wght=482.76367":-23}},null],"vevit":[{"x":{"wght=482.76367":-43,"wght=700":-50,"wght=586.19995":-46,"default":-40}},null],"xevit":[{"x":{"wght=586.19995":-46,"wght=482.76367":-43,"wght=700":-50,"default":-40}},null],"yvit":[{"x":{"wght=482.76367":-23,"default":-20,"wght=586.19995":-26,"wght=700":-30}},null]},"Nevit":{"Shevit":[{"x":{"wght=586.19995":-26,"default":-20,"wght=482.76367":-23,"wght=700":-30}},null]},"Tevit":[{"fevit":{"x":{"wght=700":-30,"wght=586.19995":-26,"wght=482.76367":-23,"default":-20}}},null],"Uvit":[{"Ivit":{"x":{"default":-40,"wght=482.76367":-46,"wght=700":-60,"wght=586.19995":-53}},"cevit":{"x":{"wght=586.19995":-46,"wght=700":-50,"default":-40,"wght=482.76367":-43}},"eivit":{"x":{"wght=700":-60,"wght=586.19995":-56,"default":-50,"wght=482.76367":-53}},"fevit":{"x":{"wght=482.76367":-83,"default":-80,"wght=586.19995":-86,"wght=700":-90}},"nevit":{"x":{"default":-40,"wght=586.19995":-46,"wght=482.76367":-43,"wght=700":-50}},"xevit":{"x":{"wght=482.76367":-53,"wght=586.19995":-56,"default":-50,"wght=700":-60}}},null],"Yvit":[{"Ivit":{"x":{"wght=586.19995":-53,"wght=700":-60,"wght=482.76367":-46,"default":-40}},"cevit":{"x":{"wght=482.76367":-43,"wght=586.19995":-46,"wght=700":-50,"default":-40}},"eivit":{"x":{"wght=482.76367":-53,"default":-50,"wght=586.19995":-56,"wght=700":-60}},"fevit":{"x":{"default":-80,"wght=700":-90,"wght=586.19995":-86,"wght=482.76367":-83}},"nevit":{"x":{"wght=700":-50,"wght=586.19995":-46,"wght=482.76367":-43,"default":-40}},"xevit":{"x":{"default":-50,"wght=700":-60,"wght=482.76367":-53,"wght=586.19995":-56}}},null],"lavit":[{"eivit":{"x":{"wght=586.19995":-26,"wght=700":-30,"default":-20,"wght=482.76367":-23}},"fevit":{"x":{"wght=586.19995":-43,"default":-30,"wght=482.76367":-36,"wght=700":-50}}},null],"llavit":[{"eivit":{"x":{"default":-20,"wght=482.76367":-23,"wght=700":-30,"wght=586.19995":-26}},"fevit":{"x":{"wght=700":-50,"default":-30,"wght=482.76367":-36,"wght=586.19995":-43}}},null],"nevit":{"Shevit":[{"x":{"default":-20,"wght=482.76367":-23,"wght=586.19995":-26,"wght=700":-30}},null]},"uvit":[{"fevit":{"x":{"wght=586.19995":-56,"default":-50,"wght=700":-60,"wght=482.76367":-53}}},null],"yvit":[{"fevit":{"x":{"wght=700":-60,"wght=482.76367":-53,"default":-50,"wght=586.19995":-56}}},null]},"1":{"classes":[{"@CLASS_L_0":["Bbevit","nevit","Jevit","Nevit"],"@CLASS_L_1":["Llavit","Uvit","Yvit"],"@CLASS_L_2":["Devit","Dhevit"],"@CLASS_L_3":["Ivit","Ijevit"],"@CLASS_L_4":["avit","kavit"],"@CLASS_L_5":["devit","dhevit"],"@CLASS_L_6":["lavit","llavit"],"@CLASS_L_7":["ovit","zevit"],"@CLASS_L_8":["sevit","shevit"],"@CLASS_L_9":["uvit","yvit"],"@CLASS_L_10":["Avit"],"@CLASS_L_11":["Kavit"],"@CLASS_L_12":["Tevit"],"@CLASS_L_13":["Zevit"],"@CLASS_L_14":["checit"],"@CLASS_L_15":["tevit"],"@CLASS_R_1":["Avit","Checit","Hhavit","Kavit","Ovit","Qavit","Zevit"],"@CLASS_R_2":["avit","checit","hhavit","kavit","qavit","zevit"],"@CLASS_R_3":["Revit","Sevit","Shevit","Vevit"],"@CLASS_R_4":["Bbevit","Jevit"],"@CLASS_R_5":["Lavit","Llavit"],"@CLASS_R_6":["Uvit","Yvit"],"@CLASS_R_7":["bbevit","jevit"],"@CLASS_R_8":["period","comma"],"@CLASS_R_9":["ivit","ijevit"],"@CLASS_R_10":["lavit","llavit"],"@CLASS_R_11":["sevit","shevit"],"@CLASS_R_12":["uvit","yvit"],"@CLASS_R_13":["Tevit"],"@CLASS_R_14":["gavit"],"@CLASS_R_15":["ovit"],"@CLASS_R_16":["tevit"]},null],"kerns":[{"@CLASS_L_0":{"@All":{"x":0},"@CLASS_R_1":{"x":{"default":-25,"wght=700":-35,"wght=482.76367":-28,"wght=586.19995":-31}},"@CLASS_R_2":{"x":{"wght=586.19995":-16,"wght=482.76367":-13,"wght=700":-20,"default":-10}},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"wght=700":-60,"wght=482.76367":-53,"wght=586.19995":-56,"default":-50}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":{"wght=700":-40,"wght=482.76367":-33,"default":-30,"wght=586.19995":-36}},"@CLASS_R_11":{"x":{"wght=586.19995":-36,"wght=482.76367":-33,"default":-30,"wght=700":-40}},"@CLASS_R_12":{"x":{"wght=482.76367":-47,"wght=586.19995":-44,"wght=700":-40,"default":-50}},"@CLASS_R_13":{"x":{"wght=482.76367":-83,"wght=586.19995":-86,"wght=700":-90,"default":-80}},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_1":{"@All":{"x":0},"@CLASS_R_1":{"x":{"wght=700":-30,"default":-20,"wght=482.76367":-23,"wght=586.19995":-26}},"@CLASS_R_2":{"x":{"wght=586.19995":-76,"default":-70,"wght=482.76367":-73,"wght=700":-80}},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":{"wght=586.19995":-26,"wght=482.76367":-23,"default":-20,"wght=700":-30}},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":{"default":-40,"wght=482.76367":-43,"wght=586.19995":-46,"wght=700":-50}},"@CLASS_R_8":{"x":{"wght=700":-70,"default":-60,"wght=482.76367":-63,"wght=586.19995":-66}},"@CLASS_R_9":{"x":{"wght=700":-60,"default":-50,"wght=586.19995":-56,"wght=482.76367":-53}},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":{"wght=586.19995":-26,"wght=482.76367":-23,"wght=700":-30,"default":-20}},"@CLASS_R_12":{"x":{"wght=700":0,"wght=586.19995":-4,"wght=482.76367":-7,"default":-10}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":{"wght=482.76367":-53,"default":-50,"wght=700":-60,"wght=586.19995":-56}},"@CLASS_R_16":{"x":{"default":-70,"wght=586.19995":-76,"wght=700":-80,"wght=482.76367":-73}}},"@CLASS_L_2":{"@All":{"x":0},"@CLASS_R_1":{"x":{"wght=586.19995":-26,"wght=482.76367":-23,"default":-20,"wght=700":-30}},"@CLASS_R_2":{"x":{"wght=586.19995":-26,"wght=700":-30,"default":-20,"wght=482.76367":-23}},"@CLASS_R_3":{"x":{"wght=586.19995":-36,"default":-30,"wght=700":-40,"wght=482.76367":-33}},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":{"wght=482.76367":-73,"wght=700":-80,"default":-70,"wght=586.19995":-76}},"@CLASS_R_6":{"x":{"wght=586.19995":-106,"wght=482.76367":-103,"wght=700":-110,"default":-100}},"@CLASS_R_7":{"x":{"wght=482.76367":-53,"wght=586.19995":-56,"wght=700":-60,"default":-50}},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":{"wght=482.76367":-33,"default":-30,"wght=586.19995":-36,"wght=700":-40}},"@CLASS_R_10":{"x":{"default":-60,"wght=700":-70,"wght=482.76367":-63,"wght=586.19995":-66}},"@CLASS_R_11":{"x":{"wght=482.76367":-23,"wght=700":-30,"default":-20,"wght=586.19995":-26}},"@CLASS_R_12":{"x":{"default":-60,"wght=586.19995":-66,"wght=482.76367":-63,"wght=700":-70}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":{"wght=482.76367":-23,"wght=586.19995":-26,"default":-20,"wght=700":-30}},"@CLASS_R_16":{"x":0}},"@CLASS_L_3":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"wght=700":-70,"wght=482.76367":-63,"default":-60,"wght=586.19995":-66}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_4":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"wght=700":-60,"wght=586.19995":-56,"default":-50,"wght=482.76367":-53}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_5":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":{"wght=482.76367":-26,"default":-20,"wght=700":-40,"wght=586.19995":-33}},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"wght=482.76367":-38,"default":-30,"wght=700":-60,"wght=586.19995":-48}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_6":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":{"wght=586.19995":-43,"default":-30,"wght=700":-50,"wght=482.76367":-36}},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"wght=482.76367":-16,"wght=586.19995":-23,"wght=700":-30,"default":-10}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":{"wght=586.19995":-47,"default":-60,"wght=482.76367":-54,"wght=700":-40}},"@CLASS_R_16":{"x":0}},"@CLASS_L_7":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"default":-35,"wght=700":-40,"wght=482.76367":-36,"wght=586.19995":-38}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_8":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"wght=586.19995":-56,"wght=700":-60,"default":-50,"wght=482.76367":-53}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_9":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":{"wght=586.19995":-36,"default":-30,"wght=482.76367":-33,"wght=700":-40}},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":{"default":-20,"wght=586.19995":-33,"wght=482.76367":-26,"wght=700":-40}},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":{"default":-10,"wght=586.19995":-16,"wght=700":-20,"wght=482.76367":-13}},"@CLASS_R_15":{"x":{"default":-20,"wght=482.76367":-26,"wght=700":-40,"wght=586.19995":-33}},"@CLASS_R_16":{"x":0}},"@CLASS_L_10":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":{"default":-20,"wght=482.76367":-23,"wght=700":-30,"wght=586.19995":-26}},"@CLASS_R_6":{"x":{"default":-50,"wght=586.19995":-56,"wght=700":-60,"wght=482.76367":-53}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_11":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"wght=586.19995":-116,"default":-110,"wght=700":-120,"wght=482.76367":-113}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_12":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"wght=700":-50,"wght=586.19995":-46,"wght=482.76367":-43,"default":-40}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_13":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"wght=482.76367":-23,"wght=586.19995":-26,"default":-20,"wght=700":-30}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_14":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":{"wght=586.19995":-13,"default":0,"wght=482.76367":-6,"wght=700":-20}},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"wght=700":-50,"default":-30,"wght=482.76367":-36,"wght=586.19995":-43}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_15":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"wght=586.19995":-76,"wght=700":-80,"wght=482.76367":-73,"default":-70}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":{"wght=700":-60,"wght=482.76367":-46,"default":-40,"wght=586.19995":-53}},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"wght=482.76367":-43,"default":-40,"wght=700":-50,"wght=586.19995":-46}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}}},null],"Bbevit":[null,{"Shevit":{"x":{"wght=700":-30,"default":-20}}}],"Devit":[null,{"Njevit":{"x":{"wght=700":-40,"default":-30}},"Uvit":{"x":{"default":-150,"wght=700":-160}},"Vevit":{"x":{"wght=700":-40,"default":-30}},"Yvit":{"x":{"wght=700":-160,"default":-150}},"nevit":{"x":{"wght=700":-50,"default":-40}},"vevit":{"x":{"default":-20,"wght=700":-30}}}],"Dhevit":[null,{"Revit":{"x":{"default":-40,"wght=700":-50}},"Sevit":{"x":{"wght=700":-50,"default":-40}},"Shevit":{"x":{"wght=700":-50,"default":-40}},"Vevit":{"x":{"wght=700":-50,"default":-40}},"nevit":{"x":{"wght=700":-50,"default":-40}},"vevit":{"x":{"default":-20,"wght=700":-30}}}],"Eivit":[null,{"Uvit":{"x":{"default":-40,"wght=700":-50}},"Yvit":{"x":{"default":-40,"wght=700":-50}}}],"Ivit":[null,{"Revit":{"x":{"wght=700":-30,"default":-20}},"Sevit":{"x":{"wght=700":-30,"default":-20}},"Shevit":{"x":{"wght=700":-30,"default":-20}},"Vevit":{"x":{"default":-20,"wght=700":-30}}}],"Jevit":[null,{"Shevit":{"x":{"default":-20,"wght=700":-30}}}],"Llavit":[null,{"Ivit":{"x":{"wght=700":-60,"default":-40}},"bbevit":{"x":{"wght=700":-40,"default":-30}},"cevit":{"x":{"default":-30,"wght=700":-40}},"eivit":{"x":{"wght=700":-60,"default":-50}},"gavit":{"x":{"default":0,"wght=700":-30}},"jevit":{"x":{"default":-30,"wght=700":-40}},"nevit":{"x":{"wght=700":-40,"default":-30}},"ovit":{"x":{"default":-40,"wght=700":-50}},"sevit":{"x":{"default":-20,"wght=700":-30}},"shevit":{"x":{"wght=700":-30,"default":-20}},"tevit":{"x":{"default":-30,"wght=700":-40}},"uvit":{"x":{"default":-20,"wght=700":-30}},"vevit":{"x":{"default":-40,"wght=700":-50}},"xevit":{"x":{"default":-40,"wght=700":-50}},"yvit":{"x":{"default":-20,"wght=700":-30}}}],"Nevit":[null,{"Shevit":{"x":{"default":-20,"wght=700":-30}}}],"Tevit":[null,{"fevit":{"x":{"default":-20,"wght=700":-30}}}],"Uvit":[null,{"Ivit":{"x":{"default":-40,"wght=700":-60}},"cevit":{"x":{"wght=700":-50,"default":-40}},"eivit":{"x":{"default":-50,"wght=700":-60}},"fevit":{"x":{"default":-80,"wght=700":-90}},"nevit":{"x":{"default":-40,"wght=700":-50}},"xevit":{"x":{"default":-50,"wght=700":-60}}}],"Yvit":[null,{"Ivit":{"x":{"wght=700":-60,"default":-40}},"cevit":{"x":{"wght=700":-50,"default":-40}},"eivit":{"x":{"wght=700":-60,"default":-50}},"fevit":{"x":{"default":-80,"wght=700":-90}},"nevit":{"x":{"default":-40,"wght=700":-50}},"xevit":{"x":{"default":-50,"wght=700":-60}}}],"lavit":[null,{"eivit":{"x":{"default":-20,"wght=700":-30}},"fevit":{"x":{"default":-30,"wght=700":-50}}}],"llavit":[null,{"eivit":{"x":{"default":-20,"wght=700":-30}},"fevit":{"x":{"default":-30,"wght=700":-50}}}],"nevit":[null,{"Shevit":{"x":{"default":-20,"wght=700":-30}}}],"uvit":[null,{"fevit":{"x":{"default":-50,"wght=700":-60}}}],"yvit":[null,{"fevit":{"x":{"wght=700":-60,"default":-50}}}]},"2":[null,{"type":"pair","classes":{"@CLASS_L_0":["Jevit","Nevit","Bbevit","nevit"],"@CLASS_L_1":["Llavit","Uvit","Yvit"],"@CLASS_L_2":["Devit","Dhevit"],"@CLASS_L_3":["Ivit","Ijevit"],"@CLASS_L_4":["avit","kavit"],"@CLASS_L_5":["devit","dhevit"],"@CLASS_L_6":["lavit","llavit"],"@CLASS_L_7":["ovit","zevit"],"@CLASS_L_8":["sevit","shevit"],"@CLASS_L_9":["uvit","yvit"],"@CLASS_L_10":["Avit"],"@CLASS_L_11":["Kavit"],"@CLASS_L_12":["Tevit"],"@CLASS_L_13":["Zevit"],"@CLASS_L_14":["checit"],"@CLASS_L_15":["tevit"],"@CLASS_R_1":["Avit","Checit","Hhavit","Kavit","Ovit","Qavit","Zevit"],"@CLASS_R_2":["avit","checit","hhavit","kavit","qavit","zevit"],"@CLASS_R_3":["Revit","Sevit","Shevit","Vevit"],"@CLASS_R_4":["Bbevit","Jevit"],"@CLASS_R_5":["Lavit","Llavit"],"@CLASS_R_6":["Uvit","Yvit"],"@CLASS_R_7":["bbevit","jevit"],"@CLASS_R_8":["period","comma"],"@CLASS_R_9":["ivit","ijevit"],"@CLASS_R_10":["lavit","llavit"],"@CLASS_R_11":["sevit","shevit"],"@CLASS_R_12":["uvit","yvit"],"@CLASS_R_13":["Tevit"],"@CLASS_R_14":["gavit"],"@CLASS_R_15":["ovit"],"@CLASS_R_16":["tevit"]},"kerns":{"@CLASS_L_0":{"@All":{"x":0},"@CLASS_R_1":{"x":{"default":-25,"wght=700":-35}},"@CLASS_R_2":{"x":{"default":-10,"wght=700":-20}},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"default":-50,"wght=700":-60}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":{"default":-30,"wght=700":-40}},"@CLASS_R_11":{"x":{"wght=700":-40,"default":-30}},"@CLASS_R_12":{"x":{"wght=700":-40,"default":-50}},"@CLASS_R_13":{"x":{"default":-80,"wght=700":-90}},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_1":{"@All":{"x":0},"@CLASS_R_1":{"x":{"wght=700":-30,"default":-20}},"@CLASS_R_2":{"x":{"wght=700":-80,"default":-70}},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":{"default":-20,"wght=700":-30}},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":{"default":-40,"wght=700":-50}},"@CLASS_R_8":{"x":{"wght=700":-70,"default":-60}},"@CLASS_R_9":{"x":{"wght=700":-60,"default":-50}},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":{"default":-20,"wght=700":-30}},"@CLASS_R_12":{"x":{"default":-10,"wght=700":0}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":{"default":-50,"wght=700":-60}},"@CLASS_R_16":{"x":{"wght=700":-80,"default":-70}}},"@CLASS_L_2":{"@All":{"x":0},"@CLASS_R_1":{"x":{"wght=700":-30,"default":-20}},"@CLASS_R_2":{"x":{"wght=700":-30,"default":-20}},"@CLASS_R_3":{"x":{"wght=700":-40,"default":-30}},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":{"wght=700":-80,"default":-70}},"@CLASS_R_6":{"x":{"wght=700":-110,"default":-100}},"@CLASS_R_7":{"x":{"wght=700":-60,"default":-50}},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":{"default":-30,"wght=700":-40}},"@CLASS_R_10":{"x":{"default":-60,"wght=700":-70}},"@CLASS_R_11":{"x":{"wght=700":-30,"default":-20}},"@CLASS_R_12":{"x":{"default":-60,"wght=700":-70}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":{"wght=700":-30,"default":-20}},"@CLASS_R_16":{"x":0}},"@CLASS_L_3":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"default":-60,"wght=700":-70}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_4":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"default":-50,"wght=700":-60}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_5":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":{"wght=700":-40,"default":-20}},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"wght=700":-60,"default":-30}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_6":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":{"wght=700":-50,"default":-30}},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"default":-10,"wght=700":-30}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":{"default":-60,"wght=700":-40}},"@CLASS_R_16":{"x":0}},"@CLASS_L_7":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"default":-35,"wght=700":-40}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_8":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"default":-50,"wght=700":-60}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_9":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":{"default":-30,"wght=700":-40}},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":{"wght=700":-40,"default":-20}},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":{"default":-10,"wght=700":-20}},"@CLASS_R_15":{"x":{"wght=700":-40,"default":-20}},"@CLASS_R_16":{"x":0}},"@CLASS_L_10":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":{"default":-20,"wght=700":-30}},"@CLASS_R_6":{"x":{"default":-50,"wght=700":-60}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_11":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"default":-110,"wght=700":-120}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_12":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"wght=700":-50,"default":-40}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_13":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"default":-20,"wght=700":-30}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":0},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":0},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_14":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":0},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":{"default":0,"wght=700":-20}},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"default":-30,"wght=700":-50}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}},"@CLASS_L_15":{"@All":{"x":0},"@CLASS_R_1":{"x":0},"@CLASS_R_2":{"x":0},"@CLASS_R_3":{"x":0},"@CLASS_R_4":{"x":0},"@CLASS_R_5":{"x":0},"@CLASS_R_6":{"x":{"wght=700":-80,"default":-70}},"@CLASS_R_7":{"x":0},"@CLASS_R_8":{"x":0},"@CLASS_R_9":{"x":0},"@CLASS_R_10":{"x":{"wght=700":-60,"default":-40}},"@CLASS_R_11":{"x":0},"@CLASS_R_12":{"x":{"wght=700":-50,"default":-40}},"@CLASS_R_13":{"x":0},"@CLASS_R_14":{"x":0},"@CLASS_R_15":{"x":0},"@CLASS_R_16":{"x":0}}}}]}}},"HVAR":{"item_variation_store_offset":{"variation_region_list_offset":{"region_count":[3,1],"variation_regions":{"0":{"region_axes":{"0":{"peak_coord":[0.27587890625,1.0]}}},"1":[{"region_axes":[{"start_coord":0.27587890625,"peak_coord":0.62066650390625,"end_coord":1.0}]},null],"2":[{"region_axes":[{"start_coord":0.62066650390625,"peak_coord":1.0,"end_coord":1.0}]},null]}},"item_variation_data_count":[2,1],"item_variation_data_offsets":{"0":{"item_count":[3,103],"region_index_count":[2,1],"region_indexes":{"1":[2,null]},"delta_sets":{"0":[255,238],"1":[254,24],"2":[0,53],"3":[0,45],"4":[1,254],"5":[2,31],"6":[null,19],"7":[null,9],"8":[null,239],"9":[null,11],"10":[null,93],"11":[null,29],"12":[null,69],"13":[null,71],"14":[null,33],"15":[null,33],"16":[null,44],"17":[null,21],"18":[null,6],"19":[null,29],"20":[null,65],"21":[null,42],"22":[null,21],"23":[null,22],"24":[null,71],"25":[null,20],"26":[null,9],"27":[null,9],"28":[null,9],"29":[null,237],"30":[null,229],"31":[null,220],"32":[null,23],"33":[null,19],"34":[null,220],"35":[null,63],"36":[null,12],"37":[null,14],"38":[null,58],"39":[null,37],"40":[null,71],"41":[null,63],"42":[null,88],"43":[null,22],"44":[null,57],"45":[null,29],"46":[null,12],"47":[null,70],"48":[null,93],"49":[null,0],"50":[null,0],"51":[null,14],"52":[null,11],"53":[null,60],"54":[null,15],"55":[null,2],"56":[null,5],"57":[null,52],"58":[null,50],"59":[null,65],"60":[null,11],"61":[null,29],"62":[null,24],"63":[null,24],"64":[null,52],"65":[null,3],"66":[null,35],"67":[null,52],"68":[null,249],"69":[null,35],"70":[null,27],"71":[null,0],"72":[null,0],"73":[null,0],"74":[null,0],"75":[null,0],"76":[null,0],"77":[null,0],"78":[null,0],"79":[null,0],"80":[null,0],"81":[null,0],"82":[null,0],"83":[null,0],"84":[null,0],"85":[null,0],"86":[null,54],"87":[null,54],"88":[null,44],"89":[null,44],"90":[null,18],"91":[null,18],"92":[null,50],"93":[null,76],"94":[null,2],"95":[null,0],"96":[null,100],"97":[null,70],"98":[null,0],"99":[null,0],"100":[null,0],"101":[null,0],"102":[null,0]}},"1":[{"item_count":46,"word_delta_count":0,"region_index_count":3,"region_indexes":[0,1,2],"delta_sets":[246,239,220,249,243,229,251,247,237,251,248,238,251,248,239,254,253,249,1,1,3,1,2,5,2,3,6,2,5,9,3,5,11,3,5,12,4,7,14,4,7,15,5,8,18,5,9,19,6,9,20,6,10,21,6,11,22,6,11,23,7,11,24,7,13,27,8,14,29,9,14,31,9,15,33,10,17,35,10,18,37,12,20,42,12,21,44,12,22,45,14,24,50,14,25,52,15,25,53,15,26,54,16,27,57,16,28,58,17,28,60,17,30,63,18,31,65,19,33,69,19,33,70,20,34,71,21,36,76,24,42,88,26,44,93,28,47,100]},null]}},"advance_width_mapping_offset":[{"format":0,"entry_format":5,"map_count":99,"map_data":[67,84,96,93,0,87,79,73,68,74,108,86,103,105,88,88,92,81,72,86,102,91,81,82,105,80,73,73,73,66,65,64,83,79,64,101,75,76,99,90,105,101,107,82,98,86,75,104,108,1,1,76,74,100,77,2,71,95,94,102,74,86,84,84,95,70,89,95,69,89,85,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,97,97,92,92,78,78,94,106,2,1,109,104,1]},"0x0000"]},"STAT":{"offset_to_axis_value_offsets":{"axis_value_offsets":{"1":{"value_name_id":["258","259"]},"2":{"value_name_id":["259","261"]},"3":{"value_name_id":["260","263"]}}}},"fvar":{"axis_instance_arrays_offset":{"instances":{"0":{"subfamily_name_id":["261","257"],"post_script_name_id":[null,"258"]},"1":{"subfamily_name_id":["262","259"],"post_script_name_id":[null,"260"]},"2":{"subfamily_name_id":["263","261"],"post_script_name_id":[null,"262"]},"3":{"subfamily_name_id":["264","263"],"post_script_name_id":[null,"264"]}}},"instance_size":[8,10]},"gvar":{"shared_tuple_count":[3,1],"shared_tuples_offset":{"tuples":{"0":{"values":{"0":[0.27587890625,1.0]}},"1":[{"values":[0.62066650390625]},null],"2":[{"values":[1.0]},null]}},"glyph_variation_data_array_offset":[234,230]},"head":{"checksum_adjustment":[3675071501,3363253016],"modified":[3748326677,3813913760]},"hhea":{"caret_slope_rise":[1,1000]},"loca":{"offsets":{"40":[7190,7188],"41":[7412,7410],"42":[7540,7538],"43":[7654,7652],"44":[7808,7806],"45":[7968,7966],"46":[8184,8182],"47":[8388,8386],"48":[8524,8522],"49":[8790,8788],"50":[8914,8910],"51":[9146,9138],"52":[9316,9308],"53":[9516,9508],"54":[9720,9712],"55":[9866,9858],"56":[10034,10026],"57":[10124,10116],"58":[10280,10272],"59":[10374,10366],"60":[10606,10598],"61":[10850,10842],"62":[10970,10962],"63":[11130,11122],"64":[11302,11294],"65":[11440,11432],"66":[11558,11550],"67":[11678,11670],"68":[11856,11848],"69":[12074,12066],"70":[12250,12242],"71":[12438,12430],"72":[12526,12518],"73":[12600,12592],"74":[12706,12698],"75":[12852,12844],"76":[12950,12942],"77":[13078,13070],"78":[13210,13202],"79":[13254,13246],"80":[13408,13400],"81":[13538,13530],"82":[13538,13530],"83":[13538,13530],"84":[13538,13530],"85":[13538,13530],"86":[13562,13554],"87":[13624,13616],"88":[13686,13678],"89":[13730,13722],"90":[13790,13782],"91":[13866,13858],"92":[13958,13950],"93":[14016,14008],"94":[14130,14122],"95":[14198,14190],"96":[14224,14216],"97":[14264,14256],"98":[14290,14282],"99":[14330,14322],"100":[14368,14360],"101":[14404,14396],"102":[14442,14434],"103":[14480,14472]}},"name":{"LICENSE_DESCRIPTION":{"en-US":["This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL","This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org"]},"LICENSE_URL":{"en-US":["https://scripts.sil.org/OFL","https://openfontlicense.org"]},"256":{"en":[null,"Weight"]},"258":{"en-US":["Medium","NotoSerifVithkuqi-Regular"],"en":[null,"NotoSerifVithkuqi-Regular"]},"259":{"en-US":["SemiBold","Medium"],"en":[null,"Medium"]},"260":{"en-US":["Bold","NotoSerifVithkuqi-Medium"],"en":[null,"NotoSerifVithkuqi-Medium"]},"261":{"en":["Regular","SemiBold"],"en-US":["Regular","SemiBold"]},"262":{"en":["Medium","NotoSerifVithkuqi-SemiBold"],"en-US":["Medium","NotoSerifVithkuqi-SemiBold"]},"263":{"en":["SemiBold","Bold"],"en-US":["SemiBold","Bold"]},"264":{"en":["Bold","NotoSerifVithkuqi-Bold"],"en-US":["Bold","NotoSerifVithkuqi-Bold"]},"257":[null,{"en":"Regular","en-US":"Regular"}]}},"kerns":{"error":"There are 356 changes, check manually!"},"cmap_diff":{},"locations":[{"location":"Medium","coords":{"wght":500.0},"glyphs":[{"string":"𐕳","name":"VITHKUQI CAPITAL LETTER CE","unicode":"U+10573","differing_pixels":182},{"string":"𐖚","name":"VITHKUQI SMALL LETTER CE","unicode":"U+1059A","differing_pixels":147}],"words":{}},{"location":"SemiBold","coords":{"wght":600.0},"glyphs":[{"string":"𐕳","name":"VITHKUQI CAPITAL LETTER CE","unicode":"U+10573","differing_pixels":177},{"string":"𐖚","name":"VITHKUQI SMALL LETTER CE","unicode":"U+1059A","differing_pixels":147}],"words":{}}]};
+		function buildLocation_statichtml(loc) {
+  // Set font styles to appropriate axis locations
+  let rule = document.styleSheets[0].cssRules[2].style;
+  let cssSetting = "";
+  let textLocation = "Default";
+  if (loc.coords) {
+    cssSetting = Object.entries(loc.coords)
+      .map(function ([axis, value]) {
+        return `"${axis}" ${value}`;
+      })
+      .join(", ");
+    textLocation = Object.entries(loc.coords)
+      .map(function ([axis, value]) {
+        return `${axis}=${value}`;
+      })
+      .join(" ");
+    rule.setProperty("font-variation-settings", cssSetting);
+  }
+
+  $("#main").empty();
+
+  $("#title").html(`<h4 class="mt-2">${textLocation}</h2>`);
+
+  if (loc.glyphs) {
+    $("#main").append("<h4>Modified Glyphs</h4>");
+    let glyphs = $("<div>");
+    for (let glyph of loc.glyphs) {
+      addAGlyph(glyph, glyphs);
+    }
+    $("#main").append(glyphs);
+  }
+
+  if (loc.words) {
+    $("#main").append("<h4>Modified Words</h4>");
+    for (let [script, words] of Object.entries(loc.words)) {
+      let scriptTitle = $(`<h6>${script}</h6>`);
+      $("#main").append(scriptTitle);
+      let worddiv = $("<div>");
+      for (let word of words) {
+        addAWord(word, worddiv);
+      }
+      $("#main").append(worddiv);
+    }
+  }
+  $('[data-toggle="tooltip"]').tooltip();
+}
+
+$(function () {
+  if (report["tables"]) {
+    diffTables(report);
+  }
+  if (report["kerns"]) {
+    diffKerns(report);
+  }
+  cmapDiff(report);
+  $('[data-toggle="tooltip"]').tooltip();
+  if (!report["locations"]) {
+    $("#title").html("<h4 class='mt-2'>No differences found</h4>");
+    $("#ui-nav").hide();
+    return;
+  }
+
+  for (var [index, loc] of report["locations"].entries()) {
+    var loc_nav = $(`<li class="nav-item">
+		<a class="nav-link text-secondary" href="#" data-index="${index}">${loc.location.replaceAll(
+      ",",
+      ",\u200b"
+    )}</a>
+	</li>`);
+    $("#locationnav").append(loc_nav);
+  }
+  $("#locationnav li a").on("click", function (e) {
+    $("#locationnav li a").removeClass("active");
+    $(this).addClass("active");
+    buildLocation_statichtml(report.locations[$(this).data("index")]);
+  });
+  $("#locationnav li a").eq(0).click();
+
+  document.styleSheets[0].cssRules[0].style.setProperty(
+    "src",
+    "url(old-NotoSerifVithkuqi[wght].ttf)"
+  );
+  document.styleSheets[0].cssRules[1].style.setProperty(
+    "src",
+    "url(new-NotoSerifVithkuqi[wght].ttf)"
+  );
+  setupAnimation();
+});
+
+	</script>
+</body>
+
+</html>
