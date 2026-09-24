@@ -1,11 +1,11 @@
 {
-.appVersion = "3217";
+.appVersion = "3414";
 DisplayStrings = (
 "/Bbe-vit/Je-vit/a-vit/te-vit/i-vit/space/ne-vit/y-vit ./Ne-vit/bbe-vit/y-vit/space/je-vit/ei-vit/space/y-vit/space/ka-vit/i-vit/ei-vit/la-vit ,/space/i-vit/o-vit/fe-vit/te-vit/u-vit/y-vit/space/se-vit/ha-vit/y-vit/ne-vit/te-vit/y-vit/re-vit/u-vit/a-vit/re-vit/y-vit/space/y-vit/me-vit/y-vit/re-vit/i-vit/te-vit/o-vit/fe-vit/te-vit/space/A-vit/re-vit/te-vit/y-vit/space/re-vit/ei-vit/te-vit/u-vit/y-vit/re-vit/i-vit/a-vit ,/space/je-vit/o-vit/te-vit/ei-vit ,/space/U-vit/space/y-vit/fe-vit/te-vit/y-vit/space/u-vit/re-vit/de-vit/y-vit/re-vit/i-vit/space/i-vit/te-vit ,/space/se-vit/i-vit/space/o-vit/ne-vit/te-vit/re-vit/y-vit/space/y-vit/ne-vit/ei-vit/te-vit/y-vit/space/de-vit/y-vit/space/ka-vit/i-vit/ei-vit/la-vit/space/a-vit/se-vit/ha-vit/te-vit/u-vit/space/e-vit/space/de-vit/ei-vit/space/y-vit/space/de-vit/ei-vit ./space/E-vit/pe-vit/ne-vit/a-vit/space/ne-vit/a-vit/ve-vit/ei-vit/te-vit/space/u-vit/te-vit/y-vit/ne-vit/space/e-vit/space/se-vit/o-vit/re-vit/me-vit/ei-vit/space/che-cit/y-vit/space/ne-vit/a-vit/space/de-vit/u-vit/ha-vit/e-vit/te-vit/y-vit/space/pe-vit/ei-vit/re-vit/space/fe-vit/i-vit/se-vit/te-vit/y-vit/ne-vit/y-vit ./space/Ei-vit/space/de-vit/ei-vit/space/de-vit/y-vit/la-vit -/space/ei-vit/ne-vit/a-vit/space/fe-vit/a-vit/je-vit/ei-vit/te-vit/y-vit/space/te-vit/o-vit/ne-vit/a-vit ,/space/se-vit/i-vit/space/ka-vit/u-vit/ne-vit/te-vit/re-vit/y-vit/space/de-vit/y-vit/lla-vit/ei-vit/bbe-vit/je-vit/ei-vit/me-vit/y-vit/space/e-vit/space/de-vit/ei-vit/space/ne-vit/a-vit/space/a-vit/te-vit/a-vit/space/che-cit/y-vit/space/fe-vit/y-vit/lla-vit/ei-vit/je-vit/y-vit/ne-vit/y-vit/space/de-vit/y-vit/space/ne-vit/ei-vit/ve-vit -/space/ei-vit/te-vit ./space/Ei-vit/space/de-vit/o-vit/me-vit/o-vit/se-vit/space/ne-vit/a-vit/space/la-vit/y-vit/se-vit/o-vit/ce-vit/space/ne-vit/ei-vit/ve-vit/ei-vit/te-vit/space/de-vit/y-vit/space/de-vit/o-vit/ne-vit/y-vit/space/pe-vit/i-vit/re-vit/a-vit/se-vit/me-vit/o-vit ./space/Pe-vit/o-vit/space/se-vit/ha-vit/pe-vit/y-vit/te-vit/o-vit/ne-vit/a-vit/u-vit/space/ne-vit/ei-vit/ve-vit/ei-vit/te-vit/space/ga-vit/a-vit/space/i-vit/space/lla-vit/ka-vit/u-vit ./space/Se-vit/ei-vit/space/je-vit/o-vit/te-vit/i-vit/je-vit/a-vit/space/u-vit/y-vit/se-vit/ha-vit/te-vit/y-vit/space/re-vit/ei-vit/te-vit/y-vit/re-vit/i-vit/a-vit/space/e-vit/space/de-vit/ei-vit/space/fe-vit/u-vit/ka-vit/i-vit/a-vit/space/e-vit/space/de-vit/ei-vit/space/lla-vit/u-vit/ve-vit/de-vit/i-vit/me-vit/i-vit/space/de-vit/y-vit/space/je-vit/ei-vit/te-vit/y-vit/space/te-vit/y-vit/space/pe-vit/a-vit/se-vit/o-vit/se-vit/u-vit/re-vit/y-vit/space/ve-vit/y-vit/re-vit/te-vit/ei-vit/te-vit .",
 "/Ei-vit/Ei-vit/A-vit/Ei-vit/Ei-vit/Bbe-vit/Ei-vit/Ei-vit/Be-vit/Ei-vit/Ei-vit/Ce-vit/Ei-vit \012/Ei-vit/Che-cit/Ei-vit/Ei-vit/De-vit/Ei-vit/Ei-vit/Dhe-vit/Ei-vit/Ei-vit/E-vit/Ei-vit/Ei-vit/Ei-vit/Ei-vit/Ei-vit/Fe-vit/Ei-vit/Ei-vit/Ga-vit/Ei-vit/Ei-vit/Ei-vit/Ei-vit/Ha-vit/Ei-vit/Ei-vit/Hha-vit/Ei-vit/Ei-vit/I-vit/Ei-vit/Ei-vit/Ije-vit/Ei-vit/Ei-vit/Je-vit/Ei-vit/Ei-vit/Ka-vit/Ei-vit/Ei-vit/La-vit/Ei-vit/Ei-vit/Lla-vit/Ei-vit/Ei-vit/Me-vit/Ei-vit/Ei-vit/Ne-vit/Ei-vit/Ei-vit/Nje-vit/Ei-vit/Ei-vit/O-vit/Ei-vit/Ei-vit/Pe-vit/Ei-vit/Ei-vit/Ka-vit/Qa-vit/Ei-vit/Ei-vit/Re-vit/Ei-vit/Ei-vit/Ei-vit/Ei-vit/Se-vit/Ei-vit/Ei-vit/She-vit/Ei-vit/Ei-vit/Te-vit/Ei-vit/Ei-vit/The-vit/Ei-vit/Ei-vit/U-vit/Ei-vit \012/Ei-vit/Ve-vit/Ei-vit/Ei-vit/Xe-vit/Ei-vit/Ei-vit/Ei-vit/Ei-vit/U-vit/Y-vit/Ei-vit/Ei-vit/Ze-vit/Ei-vit/Ei-vit \012/Ei-vit/u-vit/a-vit/ne-vit/e-vit/re-vit/ne-vit/de-vit/a-vit/je-vit/a-vit/de-vit/fe-vit \012",
 "00/a-vit 00/bbe-vit 00/be-vit 00/ce-vit 00/che-cit 00/de-vit 0\0120/dhe-vit 00/e-vit 00/ei-vit 00/fe-vit 00/ga-vit 000\0120/ha-vit 00/hha-vit 00/i-vit 00/ije-vit 00/je-vit 0/ka-vit 00/la-vit 0\0120/lla-vit 00/me-vit 00/ne-vit 00/nje-vit 00/o-vit 00/pe-vit 0\0120/qa-vit 00/re-vit 0000/se-vit 00/she-vit 00/te-vit 0\0120/the-vit 00/u-vit 00/ve-vit 00/xe-vit 0000/y-vit 0\0120/ze-vit 0000",
 "/ne-vit/a-vit/ne-vit/bbe-vit/ne-vit/be-vit/ne-vit/ce-vit/ne-vit/che-cit/ne-vit/de-vit/ne-vit/dhe-vit/ne-vit/e-vit/ne-vit/ei-vit/ne-vit/fe-vit/ne-vit/ga-vit/ne-vit/ne-vit/ha-vit/ne-vit/hha-vit/ne-vit/i-vit/ne-vit/ije-vit/ne-vit/je-vit/ne-vit/ka-vit/ne-vit/la-vit/ne-vit/lla-vit/ne-vit/me-vit/ne-vit/ne-vit/ne-vit/nje-vit/ne-vit/o-vit/ne-vit/pe-vit/ne-vit/qa-vit/ne-vit/re-vit/ne-vit/ne-vit/se-vit/ne-vit/she-vit/ne-vit/te-vit/ne-vit/the-vit/ne-vit/u-vit/ne-vit/ve-vit/ne-vit/xe-vit/ne-vit/ne-vit/u-vit/y-vit/ne-vit/ze-vit/ne-vit \012",
-"/U-vit/O-vit"
+"/ga-vit/O-vit"
 );
 classes = (
 {
@@ -79,7 +79,7 @@ disablesNiceNames = 1;
 familyName = "Noto Serif Vithkuqi";
 featurePrefixes = (
 {
-code = "languagesystem DFLT dflt;\012";
+code = "languagesystem DFLT dflt;\012languagesystem vith dflt;";
 name = Languagesystems;
 }
 );
@@ -6415,10 +6415,14 @@ subCategory = Lowercase;
 },
 {
 glyphname = "ga-vit";
-lastChange = "2021-11-04 06:35:00 +0000";
+lastChange = "2026-09-24 12:19:35 +0000";
 layers = (
 {
 anchors = (
+{
+name = top;
+position = "{278, 769}";
+},
 {
 name = topright;
 position = "{466, 536}";
@@ -6495,6 +6499,10 @@ width = 588;
 },
 {
 anchors = (
+{
+name = top;
+position = "{278, 769}";
+},
 {
 name = topright;
 position = "{517, 536}";
